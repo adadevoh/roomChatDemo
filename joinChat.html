@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang ="en">
+	<head>
+		<meta charset = "utf-8" />
+		<title>Chat Room request Demo</title>
+		<link rel="stylesheet" type="text/css" href="styles/basic.css">
+		<link rel="stylesheet" type="text/css" href="styles/layout.css">
+		<link rel="stylesheet" type="text/css" href="styles/mediaQueries.css">
+	</head>
+	<body>
+		<header>
+			<h1>Chat Demo</h1>
+			<p class= "tagline">
+				Chat page
+			</p>
+		</header>
+		<!--Add chat room id, and maybe participants -->
+
+		<section>
+			<form id= "send-a-message">
+				<label>
+					Enter message below
+					<input type= "text"  name="new-message" tabindex="1" />
+				</label>
+				<input type="submit" value= "send" tabindex= "2" />
+			</form>			
+		</section>
+		<ul id="messages" >
+			<h2 class= "thread"> Message Thread </h2>
+			<li id= "messages-1" data-count= "29">
+				<p><i class= "thread">Joshua says: </i></p>
+				<p>Hi are you there?</p><!-- joshua says: -->
+			</li>
+			
+			<li id= "messages-2" data-count= "14">
+				<p><i class= "thread">Paul says: </i></p>
+				<p>Hey man, how've you been??</p> <!-- ALiam says: -->
+			</li>
+		</ul>
+		<footer>
+			<ul>
+				<li>
+					quick application demo
+				</li>
+				<li class= "copyright">
+					Enterprise Systems. Florida Tech
+				</li>
+			</ul>
+		</footer>
+	</body>	
+</html>

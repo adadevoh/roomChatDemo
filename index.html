@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "utf-8" />
+		<title>Chat Room request Demo</title>
+		<link rel="stylesheet" type="text/css" href="styles/basic.css">
+		<link rel="stylesheet" type="text/css" href="styles/layout.css">
+		<link rel="stylesheet" type="text/css" href="styles/mediaQueries.css">
+	</head>
+	<body>
+		<header>
+			<h1>Chat Demo</h1>
+			<p class= "tagline">
+				online chat room request page
+			</p>
+		</header>
+
+		<section>
+			<form id= "join-chat">
+				<h2>Join Chat?</h2>
+				<p>Join available chat room. You can also search via room id</p>
+				<label>Enter room id: 
+					<input type= "text" name= "roomID" />
+				</label>
+				<input type= "submit" value= "Join Chat" />
+			</form>
+		</section>
+		<form id= "start-chat">
+			<h2>Start a new Chat?</h2>
+			<label>What is your name?
+				<input type= "text" name= "owner-name" />
+			</label>
+			<label>Enter your email address
+				<input type= "email" name= "owner-email" />
+			</label>
+			<label>What will you call this session?
+				<input type= "text" name= "sessionName"/>
+			</label>
+			<input type= "submit" value= "Create Chat Room"/>
+
+		</form>
+		<footer>
+			<ul>
+				<li>
+					quick application demo
+				</li>
+				<li class= "copyright">
+					Enterprise Systems. Florida Tech
+				</li>
+			</ul>
+		</footer>
+	</body>	
+</html>

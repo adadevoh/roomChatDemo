@@ -1,0 +1,26 @@
+/*media queries*/
+@media screen and (max-width: 768px)
+{
+	header h1, header p, section {
+		width: 90%;
+		min-width: 300px;
+	}
+
+	header{ padding-bottom: .75em; }
+
+	header h1{ font-size: 2.4em; }
+
+	form, form#join-chat{
+		float: none;
+		width: 90%;
+		margin: 0 auto 3em;
+	}
+
+	form p{font-size: .75em; }
+
+	label input{width: 88%; font-size: 1.6em; }
+
+	footer { margin-top: 3em; }
+	
+	footer ul { width: 300px; }
+}
