@@ -59,9 +59,9 @@ spl_autoload_register('class_autoloader');
 //parse uri, store first element in $class name, and the rest in options
 
 $uri_array = parse_uri();
-//$class_name = get_controller_classname($uri_array)
+$class_name = get_controller_classname($uri_array);
 $options = $uri_array;
-/*
+
 //if class_name is empty set default view to home
 if(empty($class_name)){
 	$class_name = 'Home';
@@ -70,11 +70,11 @@ if(empty($class_name)){
 // attempt to initialize requested view, else throw 404 error
 try{
 	$controller = new $class_name($options);
-}catch (Exception e){
+}
+catch (exception $e){
 	$options[1] = $e->getMessage();
-	$controller = new Error($options);
-}*/
-
+	//$controller = new Error($options);//*** define class Error later
+}
 
 /*--------------------------------------------------------------------------------
 --------------------------Function Declarations----------------------------------
