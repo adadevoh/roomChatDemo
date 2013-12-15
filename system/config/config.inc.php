@@ -12,15 +12,15 @@ $_C['APP_TIMEZONE'] = 'America/New_York';
 
 #Database config
 #$constant = "";
-$_C['db_hostname'] = '163.118.3.4' ;
-$_C['db_name'] = 'Chat_Room_App' ;
-$_C['db_username'] = 'root' ;
-$_C['db_password'] = '' ;
+$_C['DB_HOST'] = 'localhost' ;
+$_C['DB_NAME'] = 'Chat_Room_App' ;
+$_C['DB_USER'] = 'root' ;
+$_C['DB_PASS'] = '' ;
 
 
 $_C['DEBUG'] = TRUE;
 
-foreach ($_C as $key => $value) {
+foreach ($_C as $constant => $value) {
 	# code...
 	define($constant, $value);
 	//echo"constant". $constant."<br>";

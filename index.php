@@ -46,8 +46,8 @@ else{
 
 date_default_timezone_set($_C['APP_TIMEZONE']);
 
-//echo db_hostname;
-ECHO $_C['APP_TIMEZONE'];
+echo DB_USER.'<BR>';
+ECHO APP_TIMEZONE;
 
 //register class_autoloader as autoload funtion
 spl_autoload_register('class_autoloader');
