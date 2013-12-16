@@ -129,15 +129,15 @@ function parse_uri()
 	//if first element is empty, shift array down
 	if(empty($uri_array[0])){
 		array_shift($uri_array);
-		echo"<br>count($uri_array): ".count($uri_array)."<br>";
-		echo"<br>shitfeted down<br>";
+		echo"<br>(2)inside parse_uri() count($uri_array): ".count($uri_array)."<br>";
+		echo"<br>(3)inside parse_uri() shitfted down<br>";
 	}
 	//if last element is empty remove it
 	if(empty($uri_array[count($uri_array) -1])){
 		array_pop($uri_array);
 	}
 
-	echo"<br><br>inside parse_uri() uri_array ". print_r( $uri_array)."<br>";
+	echo"<br><br>(4)inside parse_uri() uri_array ". print_r( $uri_array)."<br>";
 	
 	return $uri_array;
 
@@ -145,8 +145,8 @@ function parse_uri()
 
 //determine controller name using first element of the URI array
 function get_controller_classname(&$uri_array){
-	echo"<br> controller: ".$controller =array_shift($uri_array)."<br>";
-	echo"<br>inside get_controller_classname(), ucfirst(controller): ". ucfirst($controller);
+	echo"<br>(1)inside get_controller_classname() controller: ".$controller =array_shift($uri_array)."<br>";
+	echo"<br>(2)inside get_controller_classname(), ucfirst(controller): ". ucfirst($controller);
 	return ucfirst($controller);
 }
 
@@ -183,6 +183,6 @@ function class_autoloader($class_name){
 	throw new Exception("Class $class_name not found");
 }
 
-echo "<BR>".APP_URL."<BR>";
+echo "<BR>APP_URL: ".APP_URL."<BR>";
 ?>
 
