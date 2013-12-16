@@ -33,7 +33,7 @@ if(!isset($_SESSION)){
 require_once SYS_PATH.'/config/config.inc.php';
 
 
-if($_C['DEBUG'] === TRUE){
+if(DEBUG === TRUE){
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL^E_STRICT);
 	//echo "true";
@@ -44,12 +44,14 @@ else{
 	echo"false";
 }
 
-date_default_timezone_set($_C['APP_TIMEZONE']);
+date_default_timezone_set(APP_TIMEZONE);
 
-echo DB_USER.'<BR>';
-ECHO APP_TIMEZONE;
+if(DEBUG){
+	echo DB_USER.'<BR>';
+	ECHO APP_TIMEZONE;
+}
 
-//register class_autoloader as autoload funtion
+//register class_autoloader as autoload function
 spl_autoload_register('class_autoloader');
 
 /*-----------------------------------------------------------------------------------
@@ -58,18 +60,21 @@ spl_autoload_register('class_autoloader');
 
 //parse uri, store first element in $class name, and the rest in options
 
-$uri_array = parse_uri();
-$class_name = get_controller_classname($uri_array);
+echo "<br>Print_ r(uri_array): ";
+print_r($uri_array = parse_uri())."<br><br>";
+echo "<br>className: ".$class_name = get_controller_classname($uri_array)."<br><br>";
 $options = $uri_array;
 
 //if class_name is empty set default view to home
 if(empty($class_name)){
+	echo"class name is empty";
 	$class_name = 'Home';
 }
 
 // attempt to initialize requested view, else throw 404 error
 try{
 	$controller = new $class_name($options);
+	echo"VVVAAAALLLIIIDDDD";
 }
 catch (exception $e){
 	$options[1] = $e->getMessage();
@@ -80,43 +85,68 @@ catch (exception $e){
 -------------------------------Output the view-------------------------------------
 ----------------------------------------------------------------------------------*/
 
-//incluedes header, requested view, and footer markup
+//includes header, requested view, and footer markup
 
 /************uncomment**********************/
-//require_once SYS_PATH.'/inc/header.inc.php';
+
+
+//load <title> for current view
+//$title = $controller->get_title();
+
+$dirty_cssBasic = /*APP_URL.*/'styles/basic.css';
+$dirty_cssLayout = /*APP_URL.*/'styles/layout.css';
+$dirty_cssMQ = /*APP_URL.*/'styles/mediaQueries.css';
+
+$basic_css_path = remove_unwanted_slashes($dirty_cssBasic);
+$layout_css_path = remove_unwanted_slashes($dirty_cssLayout);
+$mediaQueries_path = remove_unwanted_slashes($dirty_cssMQ);
+
+
+
+require_once SYS_PATH.'/inc/header.inc.php';
 
 //$controller->output_view();
 
-//require_once SYS_PATH.'/inc/footer.php';
+require_once SYS_PATH.'/inc/footer.inc.php';
+
+echo "<br> APP FOLDER: ".APP_FOLDER."<br><br>";
+echo "<br> SERVER REQ URI ".$_SERVER['REQUEST_URI']."<br><br>";
 
 /*--------------------------------------------------------------------------------
 --------------------------Function Declarations----------------------------------
 ----------------------------------------------------------------------------------*/
 
 
+
 //parse the server[request_uri] and store information other than the server uri in an array, for display to the user eg in url, or as page name
 function parse_uri()
 {
 	//remove subfolders where app is installed
-	$real_uri = preg_replace('~^'.APP_FOLDER.'~','', $_SERVER['REQUEST_URI'], 1);
-
+	$real_uri = preg_replace('~^'.APP_FOLDER.'~','',$_SERVER['REQUEST_URI'],1);
+	echo"(1)inside parse_uri() real uriii: ". $real_uri."<br><br><br>";
 	$uri_array = explode('/', $real_uri);
 
 	//if first element is empty, shift array down
 	if(empty($uri_array[0])){
 		array_shift($uri_array);
+		echo"<br>count($uri_array): ".count($uri_array)."<br>";
+		echo"<br>shitfeted down<br>";
 	}
 	//if last element is empty remove it
 	if(empty($uri_array[count($uri_array) -1])){
 		array_pop($uri_array);
 	}
 
+	echo"<br><br>inside parse_uri() uri_array ". print_r( $uri_array)."<br>";
+	
 	return $uri_array;
+
 }
 
 //determine controller name using first element of the URI array
 function get_controller_classname(&$uri_array){
-	$controller =array_shift($uri_array);
+	echo"<br>inside get_controller_classname() controller: "$controller =array_shift($uri_array);
+	echo"<br>inside get_controller_classname(), ucfirst(controller): ". ucfirst($controller);
 	return ucfirst($controller);
 }
 
@@ -152,5 +182,7 @@ function class_autoloader($class_name){
 	//on failure
 	throw new Exception("Class $class_name not found");
 }
+
+echo "<BR>".APP_URL."<BR>";
 ?>
 

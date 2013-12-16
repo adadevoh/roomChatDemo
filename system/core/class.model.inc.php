@@ -18,4 +18,5 @@ abstract class Model{
 		return TRUE;
 	}
 }
+
 ?>

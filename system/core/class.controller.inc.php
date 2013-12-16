@@ -42,4 +42,4 @@
 //$tr = $arrayName = array("sw","rr" );
 //$obj = new Controller($tr);
 
-?>
+	?>

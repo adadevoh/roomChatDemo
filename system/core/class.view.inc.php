@@ -50,4 +50,5 @@ class View{
 //class test
 $obj = new view("mssage");
 //$obj->test("message");
+
 ?>
