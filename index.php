@@ -145,7 +145,7 @@ function parse_uri()
 
 //determine controller name using first element of the URI array
 function get_controller_classname(&$uri_array){
-	echo"<br>inside get_controller_classname() controller: "$controller =array_shift($uri_array);
+	echo"<br> controller: ".$controller =array_shift($uri_array)."<br>";
 	echo"<br>inside get_controller_classname(), ucfirst(controller): ". ucfirst($controller);
 	return ucfirst($controller);
 }
