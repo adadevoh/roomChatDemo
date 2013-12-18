@@ -2,7 +2,7 @@
 <html lang = "en">
 	<head>
 		<meta charset = "utf-8" />
-		<title><?php echo "rre". $title; ?></title>
+		<title><?php echo $title; ?></title>
 		<link rel="stylesheet" type="text/css" href= <?php echo $basic_css_path; ?> />
 		<link rel="stylesheet" type="text/css" href=<?php echo $layout_css_path; ?> />
 		<link rel="stylesheet" type="text/css" href=<?php echo $mediaQueries_path; ?> />

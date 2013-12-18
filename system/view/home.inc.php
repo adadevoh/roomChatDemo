@@ -1,7 +1,7 @@
 <section>
 			<form id= "join-chat" method ="post" action= <?php echo $join; ?> >
 				<h2>Join Chat?</h2>
-				<p>Join available chat room. You can also search via room id</p>
+				<p>Join ongoing chat?</p>
 				<label>Enter room id: 
 					<input type= "text" name= "roomID" />
 				</label>
