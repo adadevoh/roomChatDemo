@@ -2,7 +2,7 @@
 /*-------------------------------------------------------------
 ---Parses template files with loaded data to output html markup 
 ----------------------------------------------------------------*/
-
+include_once "class.controller.inc.php";
 class View{
 	protected $view, $vars = array();
 
@@ -13,7 +13,8 @@ class View{
 			throw new Exception("No view slug was applied");
 		}
 		$this->view = $view;
-		echo "echoed construct bitch ". $this->view = $view. "<br>";
+		echo "echoed construct bitch ". $this->view = $view;
+		echo "<br>";
 	}
 
 

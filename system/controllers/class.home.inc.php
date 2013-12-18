@@ -1,6 +1,7 @@
 <?php
 /*----------------------Generates output for HOME PAGE*/
-include_once "../core/class.controller.inc.php";
+
+include_once "./../core/class.view.inc.php";
 //overrides abstract class controller
 class Home extends Controller
 {
@@ -18,14 +19,16 @@ class Home extends Controller
 		$view = new View('home');
 		$view ->nonce = $this->generate_nonce();
 
-		echo $view->join = API_URL.'room/join'."<br>";
+		echo $view->join = API_URL.'room/join';
+		echo "<br>";
 		echo $view->start_chat = API_URL.'room/create';
+		echo "<br>";
 		$view ->render();
 	}
 }
 
-//$obj = new Home();
+$obj = new Home();
 
-//$obj->output_view();
+$obj->output_view();
 
 ?>

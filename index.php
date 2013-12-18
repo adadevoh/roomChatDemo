@@ -57,19 +57,23 @@ spl_autoload_register('class_autoloader');
 /*-----------------------------------------------------------------------------------
 ------------------------------Load and process view data----------------------------
 -------------------------------------------------------------------------------------*/
-
+//include_once "system/controllers/class.home.inc.php";
 //parse uri, store first element in $class name, and the rest in options
 
 echo "<br>Print_ r(uri_array): ";
-print_r($uri_array = parse_uri())."<br><br>";
-echo "<br>className: ".$class_name = get_controller_classname($uri_array)."<br><br>";
+print_r($uri_array = parse_uri());
+echo "<br>#className: ".$class_name = get_controller_classname($uri_array);//exit($class_name);
 $options = $uri_array;
 
 //if class_name is empty set default view to home
-if(empty($class_name)){
+if( $class_name == NULL){
 	echo"class name is empty";
 	$class_name = 'Home';
+	//die();
 }
+
+//class_autoloader($class_name);
+echo"<br> value of class name: ".$class_name."<br>";
 
 // attempt to initialize requested view, else throw 404 error
 try{
@@ -78,6 +82,7 @@ try{
 }
 catch (exception $e){
 	$options[1] = $e->getMessage();
+	echo"<br> catch block line ".__line__." #error# $options[1]";
 	//$controller = new Error($options);//*** define class Error later
 }
 
@@ -123,7 +128,7 @@ function parse_uri()
 {
 	//remove subfolders where app is installed
 	$real_uri = preg_replace('~^'.APP_FOLDER.'~','',$_SERVER['REQUEST_URI'],1);
-	echo"(1)inside parse_uri() real uriii: ". $real_uri."<br><br><br>";
+	//echo"(1)inside parse_uri() real uriii: ". $real_uri."<br><br><br>";
 	$uri_array = explode('/', $real_uri);
 
 	//if first element is empty, shift array down
@@ -138,6 +143,7 @@ function parse_uri()
 	}
 
 	echo"<br><br>(4)inside parse_uri() uri_array ". print_r( $uri_array)."<br>";
+	echo"<br>(5)inside parse_uri() count($uri_array): ".count($uri_array)."<br>";
 	
 	return $uri_array;
 
@@ -145,7 +151,7 @@ function parse_uri()
 
 //determine controller name using first element of the URI array
 function get_controller_classname(&$uri_array){
-	echo"<br>(1)inside get_controller_classname() controller: ".$controller =array_shift($uri_array)."<br>";
+	echo"<br>(1)inside get_controller_classname() controller: ".$controller =array_shift($uri_array);
 	echo"<br>(2)inside get_controller_classname(), ucfirst(controller): ". ucfirst($controller);
 	return ucfirst($controller);
 }
