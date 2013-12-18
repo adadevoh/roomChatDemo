@@ -172,9 +172,9 @@ function class_autoloader($class_name){
 
 	//array of possible class locations
 	$possible_locations = array(
-		SYS_PATH.'/models/class.'.$file_name.'inc.php',
-		SYS_PATH.'/controllers/class.'.$file_name.'inc.php',
-		SYS_PATH.'/core/class.'.$file_name.'inc.php'
+		SYS_PATH.'/models/class.'.$file_name.'.inc.php',
+		SYS_PATH.'/controllers/class.'.$file_name.'.inc.php',
+		SYS_PATH.'/core/class.'.$file_name.'.inc.php'
 		);
 
 	//loop through location array and check for requested file

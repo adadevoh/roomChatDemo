@@ -2,7 +2,7 @@
 /*-------------------------------------------------------------
 ---Parses template files with loaded data to output html markup 
 ----------------------------------------------------------------*/
-include_once "class.controller.inc.php";
+//include_once "class.controller.inc.php";
 class View{
 	protected $view, $vars = array();
 
@@ -28,7 +28,7 @@ class View{
 		extract($this->vars);
 
 		//check to make sure requested view exists
-		$view_filepath = SYS_PATH. '/views/'.$this->view.'inc.php';
+		$view_filepath = SYS_PATH. '/view/'.$this->view.'.inc.php';
 		if(!file_exists($view_filepath)){
 			throw new Exception("This view file does not exist");
 		}
