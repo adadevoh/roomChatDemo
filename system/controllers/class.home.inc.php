@@ -19,18 +19,18 @@ class Home extends Controller
 		$view = new View('home');
 		$view ->nonce = $this->generate_nonce();
 
-		echo $view->join = APP_URL.'room/join';
-		echo "<br>";
-		echo $view->start_chat = APP_URL.'room/create';
-		echo "<br>";
+		/*echo*/ $view->join = APP_URL.'/room/join';
+		//echo "<br>";
+		/*echo*/ $view->start_chat = APP_URL.'/room/create';
+		//echo "<br>";
 		$view ->render();
 
 
 	}
 }
+//Testing
+//$obj = new Home();
 
-$obj = new Home();
-
-$obj->output_view();
+//$obj->output_view();
 
 ?>

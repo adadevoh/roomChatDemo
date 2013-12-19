@@ -13,7 +13,7 @@ class View{
 			throw new Exception("No view slug was applied");
 		}
 		$this->view = $view;
-		echo "echoed construct bitch ". $this->view = $view;
+		/*echo "echoed construct bitch ".*/ $this->view = $view;
 		echo "<br>";
 	}
 
@@ -41,7 +41,7 @@ class View{
 		require $view_filepath;
 
 		//return markup if requested
-		if(!$sprint){
+		if(!$print){
 			return ob_get_clean();
 		}
 

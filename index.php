@@ -17,8 +17,6 @@ define('APP_URL',
 //absolute path to system folder
 define('SYS_PATH', APP_PATH. '/system');
 
-//echo"app folder ". APP_FOLDER."<br>";
-//echo"request uri". $_SERVER['REQUEST_URI']."<br>";
 
 /*----------------------------------------------------------------------------
 -------------------------------Initialize app--------------------------------- 
@@ -36,7 +34,6 @@ require_once SYS_PATH.'/config/config.inc.php';
 if(DEBUG === TRUE){
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL^E_STRICT);
-	//echo "true";
 }
 else{
 	ini_set('display_errors', 0);
@@ -47,8 +44,8 @@ else{
 date_default_timezone_set(APP_TIMEZONE);
 
 if(DEBUG){
-	echo DB_USER.'<BR>';
-	ECHO APP_TIMEZONE;
+	echo "Debug mode active <br>";
+	ECHO APP_TIMEZONE."<br>";
 }
 
 //register class_autoloader as autoload function
@@ -57,28 +54,26 @@ spl_autoload_register('class_autoloader');
 /*-----------------------------------------------------------------------------------
 ------------------------------Load and process view data----------------------------
 -------------------------------------------------------------------------------------*/
-//include_once "system/controllers/class.home.inc.php";
 //parse uri, store first element in $class name, and the rest in options
 
-echo "<br>Print_ r(uri_array): ";
-print_r($uri_array = parse_uri());
-echo "<br>#className: ".$class_name = get_controller_classname($uri_array);//exit($class_name);
+//echo "<br>Print_ r(uri_array): ";
+$uri_array = parse_uri();
+/*echo "<br>#className: ".*/$class_name = get_controller_classname($uri_array);//exit($class_name);
 $options = $uri_array;
 
 //if class_name is empty set default view to home
 if( $class_name == NULL){
-	echo"class name is empty";
+	//echo"<br>class name is empty";
 	$class_name = 'Home';
 	//die();
 }
 
-//class_autoloader($class_name);
-echo"<br> value of class name: ".$class_name."<br>";
+//echo"<br> value of class name: ".$class_name."<br>";
 
 // attempt to initialize requested view, else throw 404 error
 try{
 	$controller = new $class_name($options);
-	echo"VVVAAAALLLIIIDDDD";
+	//echo"VVVAAAALLLIIIDDDD";
 }
 catch (exception $e){
 	$options[1] = $e->getMessage();
@@ -92,11 +87,9 @@ catch (exception $e){
 
 //includes header, requested view, and footer markup
 
-/************uncomment**********************/
-
 
 //load <title> for current view
-//$title = $controller->get_title();
+$title = $controller->get_title();
 
 $dirty_cssBasic = /*APP_URL.*/'styles/basic.css';
 $dirty_cssLayout = /*APP_URL.*/'styles/layout.css';
@@ -110,12 +103,12 @@ $mediaQueries_path = remove_unwanted_slashes($dirty_cssMQ);
 
 require_once SYS_PATH.'/inc/header.inc.php';
 
-//$controller->output_view();
+$controller->output_view();
 
 require_once SYS_PATH.'/inc/footer.inc.php';
 
-echo "<br> APP FOLDER: ".APP_FOLDER."<br><br>";
-echo "<br> SERVER REQ URI ".$_SERVER['REQUEST_URI']."<br><br>";
+//echo "<br> APP FOLDER: ".APP_FOLDER."<br><br>";
+//echo "<br> SERVER REQ URI ".$_SERVER['REQUEST_URI']."<br><br>";
 
 /*--------------------------------------------------------------------------------
 --------------------------Function Declarations----------------------------------
@@ -134,16 +127,16 @@ function parse_uri()
 	//if first element is empty, shift array down
 	if(empty($uri_array[0])){
 		array_shift($uri_array);
-		echo"<br>(2)inside parse_uri() count($uri_array): ".count($uri_array)."<br>";
-		echo"<br>(3)inside parse_uri() shitfted down<br>";
+		/*echo"<br>(2)inside parse_uri() count($uri_array): ".*/count($uri_array)/*."<br>"*/;
+		//echo"<br>(3)inside parse_uri() shitfted down<br>";
 	}
 	//if last element is empty remove it
 	if(empty($uri_array[count($uri_array) -1])){
 		array_pop($uri_array);
 	}
 
-	echo"<br><br>(4)inside parse_uri() uri_array ". print_r( $uri_array)."<br>";
-	echo"<br>(5)inside parse_uri() count($uri_array): ".count($uri_array)."<br>";
+	/*echo"<br><br>(4)inside parse_uri() uri_array ". */ $uri_array/*."<br>"*/;
+	/*echo"<br>(5)inside parse_uri() count($uri_array): ".*/count($uri_array)/*."<br>"*/;
 	
 	return $uri_array;
 
@@ -151,15 +144,15 @@ function parse_uri()
 
 //determine controller name using first element of the URI array
 function get_controller_classname(&$uri_array){
-	echo"<br>(1)inside get_controller_classname() controller: ".$controller =array_shift($uri_array);
-	echo"<br>(2)inside get_controller_classname(), ucfirst(controller): ". ucfirst($controller);
+	/*echo"<br>(1)inside get_controller_classname() controller: ".*/$controller =array_shift($uri_array);
+	/*echo"<br>(2)inside get_controller_classname(), ucfirst(controller): ". */ucfirst($controller);
 	return ucfirst($controller);
 }
 
 //example
-$stack = array("orange", "banana", "apple", "raspberry");
+/*$stack = array("orange", "banana", "apple", "raspberry");
 $fruit = array_shift($stack);
-print_r($fruit);
+print_r($fruit);*/
 
 //remove unwanted slashes
 function remove_unwanted_slashes($dirty_path){
@@ -189,6 +182,6 @@ function class_autoloader($class_name){
 	throw new Exception("Class $class_name not found");
 }
 
-echo "<BR>APP_URL: ".APP_URL."<BR>";
+//echo "<BR>APP_URL: ".APP_URL."<BR>";
 ?>
 
