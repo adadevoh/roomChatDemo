@@ -26,25 +26,25 @@ class View{
 	//loads and parses selected template
 	public function render($print = TRUE){
 		extract($this->vars);
-
+		
 		//check to make sure requested view exists
 		$view_filepath = SYS_PATH. '/view/'.$this->view.'.inc.php';
 		if(!file_exists($view_filepath)){
 			throw new Exception("This view file does not exist");
 		}
-
+		
 		//turn on output buffering if markup should be returned, not printed
 		if(!$print){
 			return ob_start();
 		}
-
+		
 		require $view_filepath;
-
+		
 		//return markup if requested
 		if(!$print){
 			return ob_get_clean();
 		}
-
+		
 	}
 }
 

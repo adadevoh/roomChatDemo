@@ -4,6 +4,8 @@
 ---------------------Initialize Enviroment Variables -------------------------
 -----------------------------------------------------------------------------*/
 
+$_SERVER["SERVER_NAME"] = "localhost:81";// default is "localhost", had to change it, cause I use port 81 for zend
+
 //absolute path to app for php includes
 define('APP_PATH', dirname(__FILE__));
 
@@ -67,7 +69,6 @@ if( $class_name == NULL){
 	$class_name = 'Home';
 	//die();
 }
-
 //echo"<br> value of class name: ".$class_name."<br>";
 
 // attempt to initialize requested view, else throw 404 error
@@ -78,7 +79,7 @@ try{
 catch (exception $e){
 	$options[1] = $e->getMessage();
 	echo"<br> catch block line ".__line__." #error# $options[1]";
-	//$controller = new Error($options);//*** define class Error later
+	$controller = new Error($options);//*** define class Error later
 }
 
 /*---------------------------------------------------------------------------------
@@ -91,9 +92,9 @@ catch (exception $e){
 //load <title> for current view
 $title = $controller->get_title();
 
-$dirty_cssBasic = /*APP_URL.*/'styles/basic.css';
-$dirty_cssLayout = /*APP_URL.*/'styles/layout.css';
-$dirty_cssMQ = /*APP_URL.*/'styles/mediaQueries.css';
+$dirty_cssBasic = APP_URL.'/styles/basic.css';
+$dirty_cssLayout = APP_URL.'/styles/layout.css';
+$dirty_cssMQ = APP_URL.'/styles/mediaQueries.css';
 
 $basic_css_path = remove_unwanted_slashes($dirty_cssBasic);
 $layout_css_path = remove_unwanted_slashes($dirty_cssLayout);
@@ -123,6 +124,10 @@ function parse_uri()
 	$real_uri = preg_replace('~^'.APP_FOLDER.'~','',$_SERVER['REQUEST_URI'],1);
 	//echo"(1)inside parse_uri() real uriii: ". $real_uri."<br><br><br>";
 	$uri_array = explode('/', $real_uri);
+	echo"Server name ".$_SERVER["SERVER_NAME"]."<BR>";
+	echo "App url ".APP_URL."<br>";
+	echo "app flder ".APP_FOLDER."<br>";
+	echo "server  uri ".$_SERVER['REQUEST_URI'] ."<br>";
 
 	//if first element is empty, shift array down
 	if(empty($uri_array[0])){
@@ -146,6 +151,8 @@ function parse_uri()
 function get_controller_classname(&$uri_array){
 	/*echo"<br>(1)inside get_controller_classname() controller: ".*/$controller =array_shift($uri_array);
 	/*echo"<br>(2)inside get_controller_classname(), ucfirst(controller): ". */ucfirst($controller);
+	//echo "#########". ucfirst($controller);
+	//die();
 	return ucfirst($controller);
 }
 
