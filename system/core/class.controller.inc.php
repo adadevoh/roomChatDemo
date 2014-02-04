@@ -48,7 +48,7 @@
 			$output = $this->{$this->actions[$action]}();
 
 			if(is_array($output) && isset($output['room_id'])){
-				$room_id = $output]['room_id'];
+				$room_id = $output['room_id'];
 			}
 			else{
 				throw new Exception("Form Submission Failed", 1);				
